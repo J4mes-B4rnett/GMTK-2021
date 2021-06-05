@@ -9,6 +9,7 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+*.meta
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -59,6 +60,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 GMTK 2021/Library/PackageCache/com.unity.mathematics@1.1.0/Tests/Tests/Shared/TestFloat2x2.gen.cs.meta
-*.meta
 GMTK 2021/Temp/UnityLockfile
 GMTK 2021/Library/SourceAssetDB
