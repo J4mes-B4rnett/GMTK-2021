@@ -7,35 +7,29 @@ using UnityEngine.UIElements;
 public class SceneGameManager : MonoBehaviour
 {
     public GameObject transition;
-    private Animator transitionAnim;
+    private Animator _transitionAnim;
+    private static readonly int EndScene = Animator.StringToHash("EndScene");
 
     private void Start()
     {
-        //get access to the transition gameObject's animator component
+        // Get access to the transition gameObject's animator component
         transition = GameObject.Find("Transition");
-        transitionAnim = transition.GetComponent<Animator>();
+        _transitionAnim = transition.GetComponent<Animator>();
+
+        GameEvents.Current.onSceneTransition += BeginTransition; // Subscribe Event to Local Method
     }
 
-    private void Update()
+    private void BeginTransition() // When Event Triggered
     {
-        //This section is just a way to show the transitions - it doesn't do much
-        if (Input.anyKeyDown)
-        {
-            if(SceneManager.GetActiveScene().name == "TempScene1")
-            {
-                StartCoroutine(changeScenes("TempScene2"));
-            }
-            else
-            {
-                StartCoroutine(changeScenes("TempScene1"));
-            }
-        }
+        StartCoroutine(SceneManager.GetActiveScene().name == "TempScene1"
+            ? ChangeScenes("TempScene2")
+            : ChangeScenes("TempScene1"));
     }
 
-    public IEnumerator changeScenes(string name)
+    private IEnumerator ChangeScenes(string nameOfScene)
     {
-        transitionAnim.SetTrigger("EndScene");//start the end of scene animation
+        _transitionAnim.SetTrigger(EndScene);// Start the end of scene animation
         yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(name);//end the scene
+        SceneManager.LoadScene(nameOfScene); // End the scene
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
-    public static GameEvents current; // Current Event Manager
-    void Awake()
+    public static GameEvents Current; // Current Event Manager
+    [SerializeField] bool activated = false;
+
+    private void Awake()
     {
-        current = this; // Assign Event Manager
+        Current = this; // Assign Event Manager
     }
 
     public event Action onSceneTransition; // New Event
@@ -17,6 +19,15 @@ public class GameEvents : MonoBehaviour
         if (onSceneTransition != null) // Check Event Isn't Null
         {
             onSceneTransition(); // Invoke Event
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameEvents.Current.BeginSceneTransition();
+            activated = true;
         }
     }
 }
