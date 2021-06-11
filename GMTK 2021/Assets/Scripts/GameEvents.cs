@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameEvents : MonoBehaviour
 {
     public static GameEvents Current; // Current Event Manager
-    [SerializeField] bool activated = false;
+    [field: SerializeField] public bool Activated { get; private set; } = false;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class GameEvents : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameEvents.Current.BeginSceneTransition();
-            activated = true;
+            Activated = true;
         }
     }
 }
