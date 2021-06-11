@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour {
     public int movementDirection { get; private set; }
 
     //Vertical Movement
-    public bool mayJump;
+    public bool mayJump { get; set; }
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector2 groundCheckArea;
     private bool grounded;
