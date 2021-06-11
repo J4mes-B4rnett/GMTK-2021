@@ -70,8 +70,15 @@ public class Controller : MonoBehaviour
         // Movement
         if (fastMotion)
         {
-            _rb.AddForce(input * (speedFast * Time.deltaTime * (speedMultiplier * 75)));
-            _rb.drag = 25f;
+            float xSpeed = _rb.velocity.x;
+            if (Mathf.Abs(speedFast) < 7f || input.x != Math.Sign(speedFast)) {
+                _rb.velocity += Vector2.right * (1 * input.x); //acceleration
+            }
+
+            if (input.x >= 0.5f) {
+                if (Mathf.Abs(speedFast) > 0) _rb.velocity -= Vector2.right * (1 * Math.Sign(speedFast)); //deceleration
+                if (Mathf.Abs(speedFast) < 1) _rb.velocity = new Vector2(0, _rb.velocity.y); //rounding
+            }
         }
         else if (slowMotion)
         {
@@ -83,7 +90,12 @@ public class Controller : MonoBehaviour
         {
             if (isTouchingGround)
             {
-                _rb.AddForce(Vector2.up * (jumpHeight * Time.deltaTime), ForceMode2D.Impulse);
+                _rb.velocity += Vector2.up * jumpHeight;
+                
+                if (Input.GetKeyUp(KeyCode.Space) && _rb.velocity.y > 0)
+                {
+                    _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y / 2);
+                }
             }
         }
     }
