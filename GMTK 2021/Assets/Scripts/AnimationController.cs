@@ -6,6 +6,8 @@ public class AnimationController : MonoBehaviour
 {
     public Animator rabbitAnim;
     public Animator turtleAnim;
+
+    public bool isTurtleShellOut;
     public Controller baseController;
     //enum declaration
     public enum RabbitState { idle, walk, jump, burrow }
@@ -46,6 +48,7 @@ public class AnimationController : MonoBehaviour
         {
             rabbitAnim.enabled = false;
             turtleAnim.enabled = true;
+            turtleAnim.SetBool("shellOut", isTurtleShellOut);
             switch (turtleState)
             {
                 case TurtleState.idle:
