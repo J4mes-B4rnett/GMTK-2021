@@ -4,60 +4,71 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    //public Animator rabbitAnim;
-    //public Animator turtleAnim;
-    //public Controller baseController;
-    ////enum declaration
-    //public enum RabbitState { idle, walk, jump, burrow }
-    //public enum TurtleState { idle, walk, climb }
-    //public enum Layer { Rabbit, Turtle }
+    public Animator anim;
+    public RuntimeAnimatorController rabbitAnimController;
+    public RuntimeAnimatorController turtleAnimController;
+    public Controller baseController;
+    //enum declaration
+    public enum AnimationState { idle, walk, jump, burrow, climb }
+    public enum Layer { Rabbit, Turtle }
 
-    ////enum initialization
-    //public RabbitState rabbitState = RabbitState.idle;
-    //public TurtleState turtleState = TurtleState.idle;
-    //public Layer layer;
+    //enum initialization
+    public AnimationState animState = AnimationState.idle;
+    public Layer layer;
 
-    
-    //public void UpdateState()
-    //{
-    //    layer = baseController.animal == Controller.Animal.Rabbit ? Layer.Rabbit : Layer.Turtle;
+    private void Start()
+    {
+        Debug.Log("hello");
+    }
+    void Update()
+    {
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0.1f && baseController.isTouchingGround)
+        {
+            animState = AnimationState.walk;
+        }
+        else if (!baseController.isTouchingGround)
+        {
+            animState = AnimationState.jump;
+        } else
+        {
+            animState = AnimationState.idle;
+        }
 
-    //    if (layer == Layer.Rabbit)
-    //    {
-    //        rabbitAnim.enabled = true;
-    //        turtleAnim.enabled = false;
+        //to implement for burrow and climb
+    }
 
-    //        switch (rabbitState)
-    //        {
-    //            case RabbitState.idle:
-    //                rabbitAnim.SetInteger("State", 0);
-    //                break;
-    //            case RabbitState.walk:
-    //                rabbitAnim.SetInteger("State", 1);
-    //                break;
-    //            case RabbitState.jump:
-    //                rabbitAnim.SetInteger("State", 2);
-    //                break;
-    //            case RabbitState.burrow:
-    //                rabbitAnim.SetInteger("State", 3);
-    //                break;
-    //        }
-    //    } else
-    //    {
-    //        rabbitAnim.enabled = false;
-    //        turtleAnim.enabled = true;
-    //        switch (turtleState)
-    //        {
-    //            case TurtleState.idle:
-    //                turtleAnim.SetInteger("State", 0);
-    //                break;
-    //            case TurtleState.walk:
-    //                turtleAnim.SetInteger("State", 1);
-    //                break;
-    //            case TurtleState.climb:
-    //                turtleAnim.SetInteger("State", 2);
-    //                break;
-    //        }
-    //    }
-    //}
+
+    public void UpdateState()
+    {
+        layer = baseController.animal == Controller.Animal.Rabbit ? Layer.Rabbit : Layer.Turtle;
+        
+        switch (layer)
+        {
+            case Layer.Rabbit:
+                anim.runtimeAnimatorController = rabbitAnimController;
+                break;
+            case Layer.Turtle:
+                anim.runtimeAnimatorController = turtleAnimController;
+                break;
+        }
+
+        switch (animState)
+        {
+            case AnimationState.idle:
+                anim.SetInteger("State", 0);
+                break;
+            case AnimationState.walk:
+                anim.SetInteger("State", 1);
+                break;
+            case AnimationState.jump:
+                anim.SetInteger("State", 2);
+                break;
+            case AnimationState.burrow:
+                anim.SetInteger("State", 3);
+                break;
+            case AnimationState.climb:
+                anim.SetInteger("State", 4);
+                break;
+        }
+    }
 }
