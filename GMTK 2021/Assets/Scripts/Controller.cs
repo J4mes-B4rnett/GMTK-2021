@@ -1,55 +1,102 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Animations;
 
-public class Controller : MonoBehaviour {
+public class Controller : MonoBehaviour
+{
+    [Header("Ability Tracking")]
+    
+    // Rabbit Default Abilities
+    public bool fastMotion = false;
+    public bool jump = false;
+    public bool burrow = false;
 
-    //Horizontal Movement
-    public float xSpeedLimit;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float deceleration;
-    public int movementDirection { get; private set; }
+    // Turtle Default Abilities
+    public bool slowMotion = false;
+    public bool shellPlatform = false;
 
-    //Vertical Movement
-    public bool mayJump { get; set; }
-    [SerializeField] private float jumpSpeed;
-    [SerializeField] private Vector2 groundCheckArea;
-    private bool grounded;
+    public enum Animal
+    {
+        Rabbit,
+        Turtle
+    };
+    
+    // Speed Settings
+    [Header("Speed")]
+    
+    private float _speedSetting = 0f;
+    
+    [Range(0f, 10f)] public float speedSlow = 0f;
+    [Range(5f, 15f)] public float speedFast = 0f;
+    public float speedMultiplier = 25f;
 
-    //Physics Stuff
-    private new Rigidbody2D rigidbody;
-    private new Collider2D collider;
-    private LayerMask staticObjectLayer;
+    // Jump Settings
+    [Header("Jump")]
+    
+    public float jumpHeight;
 
-    private void Start() {
-        rigidbody = gameObject.GetComponent<Rigidbody2D>();
-        collider = gameObject.GetComponent<Collider2D>();
-        staticObjectLayer = LayerMask.GetMask("Static Object");
-    }
+    [SerializeField]
+    private bool isTouchingGround;
 
-    private void Update() {
-        movementDirection = Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow));
+    private Rigidbody2D _rb;
+    
+    public Animal animal;
 
-        if (mayJump && GroundCheck() && Input.GetKeyDown(KeyCode.Z)) {
-            rigidbody.velocity += Vector2.up * jumpSpeed;
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        
+        if (animal == Animal.Rabbit)
+        {
+            fastMotion = true;
+            jump = true;
+            burrow = true;
         }
-        if (Input.GetKeyUp(KeyCode.Z) && rigidbody.velocity.y > 0) rigidbody.velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.y / 2);
-    }
-
-    private bool GroundCheck() {
-        Vector2 bottomOrigin = collider.bounds.center - new Vector3(0, collider.bounds.extents.y);
-        Collider2D hitObject = Physics2D.OverlapArea(bottomOrigin + groundCheckArea / 2, bottomOrigin - groundCheckArea / 2, staticObjectLayer);
-        return hitObject != null;
-    }
-
-    private void FixedUpdate() {
-        float xSpeed = rigidbody.velocity.x;
-        if (Mathf.Abs(xSpeed) < xSpeedLimit || movementDirection != Math.Sign(xSpeed)) {
-            rigidbody.velocity += Vector2.right * acceleration * movementDirection; //acceleration
+        else if (animal == Animal.Turtle)
+        {
+            slowMotion = true;
+            shellPlatform = true;
         }
+    }
 
-        if (movementDirection == 0) {
-            if (Mathf.Abs(xSpeed) > 0) rigidbody.velocity -= Vector2.right * deceleration * Math.Sign(xSpeed); //deceleration
-            if (Mathf.Abs(xSpeed) < deceleration) rigidbody.velocity = new Vector2(0, rigidbody.velocity.y); //rounding
+    private void FixedUpdate()
+    {
+        _speedSetting = fastMotion ? speedFast : speedSlow;
+        
+        Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
+
+        // Moves the player
+        _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
+    }
+
+    private void Update()
+    {
+        if (Input.GetButton("Jump") && jump)
+        {
+            if (isTouchingGround)
+            {
+                _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
+            }
+
+            jump = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isTouchingGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Ground"))
+        {
+            isTouchingGround = false;
         }
     }
 }

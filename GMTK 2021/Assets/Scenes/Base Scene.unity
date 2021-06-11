@@ -456,9 +456,9 @@ MonoBehaviour:
   slowMotion: 0
   shellPlatform: 0
   speedSlow: 5
-  speedFast: 8.8
-  speedMultiplier: 5
-  jumpHeight: 7.5
+  speedFast: 10
+  speedMultiplier: 30
+  jumpHeight: 25
   isTouchingGround: 0
   animal: 0
 --- !u!50 &2081805867
