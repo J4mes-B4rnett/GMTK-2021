@@ -4,12 +4,13 @@ using System;
 public class Controller : MonoBehaviour {
 
     //Horizontal Movement
-    [SerializeField] private float xSpeedLimit;
+    public float xSpeedLimit;
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
     public int movementDirection { get; private set; }
 
     //Vertical Movement
+    public bool mayJump;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private Vector2 groundCheckArea;
     private bool grounded;
@@ -28,7 +29,7 @@ public class Controller : MonoBehaviour {
     private void Update() {
         movementDirection = Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow));
 
-        if (GroundCheck() && Input.GetKeyDown(KeyCode.Z)) {
+        if (mayJump && GroundCheck() && Input.GetKeyDown(KeyCode.Z)) {
             rigidbody.velocity += Vector2.up * jumpSpeed;
         }
         if (Input.GetKeyUp(KeyCode.Z) && rigidbody.velocity.y > 0) rigidbody.velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.y / 2);
