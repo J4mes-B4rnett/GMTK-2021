@@ -69,18 +69,14 @@ public class Controller : MonoBehaviour
 
         // Moves the player
         _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
-    }
-
-    private void Update()
-    {
-        if (Input.GetButton("Jump") && jump)
+        if (Input.GetButton("Jump") && jump && isTouchingGround)
         {
             if (isTouchingGround)
             {
                 _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
             }
 
-            jump = false;
+            isTouchingGround = false;
         }
     }
 

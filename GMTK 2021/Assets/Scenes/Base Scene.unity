@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -458,8 +458,8 @@ MonoBehaviour:
   speedSlow: 5
   speedFast: 10
   speedMultiplier: 30
-  jumpHeight: 25
-  isTouchingGround: 0
+  jumpHeight: 20000
+  isTouchingGround: 1
   animal: 0
 --- !u!50 &2081805867
 Rigidbody2D:
