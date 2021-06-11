@@ -324,7 +324,6 @@ GameObject:
   - component: {fileID: 1869398808}
   - component: {fileID: 1869398807}
   - component: {fileID: 1869398806}
-  - component: {fileID: 1869398805}
   - component: {fileID: 1869398804}
   m_Layer: 0
   m_Name: Square (1)
@@ -342,27 +341,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1869398803}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be9eba04c0e5ea344897d4af619597d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpSpeed: 15
-  gravity: 1
-  groundCheckArea: {x: 1, y: 0.1}
---- !u!114 &1869398805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1869398803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e7048f3954a9b84387470f74544530a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c3d087c780226441a6152f0e4e5f127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   xSpeedLimit: 7
   acceleration: 1
   deceleration: 1
+  jumpSpeed: 15
+  groundCheckArea: {x: 1, y: 0.1}
 --- !u!61 &1869398806
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -404,12 +390,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1869398808
 SpriteRenderer:
   m_ObjectHideFlags: 0

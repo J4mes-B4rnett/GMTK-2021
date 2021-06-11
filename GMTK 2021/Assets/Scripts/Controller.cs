@@ -1,118 +1,54 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Animations;
+﻿using UnityEngine;
+using System;
 
-public class Controller : MonoBehaviour
-{
-    [Header("Ability Tracking")]
-    
-    // Rabbit Default Abilities
-    public bool fastMotion = false;
-    public bool jump = false;
-    public bool burrow = false;
+public class Controller : MonoBehaviour {
 
-    // Turtle Default Abilities
-    public bool slowMotion = false;
-    public bool shellPlatform = false;
+    //Horizontal Movement
+    [SerializeField] private float xSpeedLimit;
+    [SerializeField] private float acceleration;
+    [SerializeField] private float deceleration;
+    public int movementDirection { get; private set; }
 
-    public enum Animal
-    {
-        Rabbit,
-        Turtle
-    };
-    
-    // Speed Settings
-    [Header("Speed")]
-    
-    private float _speedSetting = 0f;
-    
-    [Range(0f, 10f)] public float speedSlow = 0f;
-    [Range(5f, 15f)] public float speedFast = 0f;
-    public float speedMultiplier = 25f;
+    //Vertical Movement
+    [SerializeField] private float jumpSpeed;
+    [SerializeField] private Vector2 groundCheckArea;
+    private bool grounded;
 
-    // Jump Settings
-    [Header("Jump")]
-    
-    public float jumpHeight;
+    //Physics Stuff
+    private new Rigidbody2D rigidbody;
+    private new Collider2D collider;
+    private LayerMask staticObjectLayer;
 
-    [SerializeField]
-    private bool isTouchingGround;
-
-    private Rigidbody2D _rb;
-    
-    public Animal animal;
-
-    private void Awake()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-        
-        if (animal == Animal.Rabbit)
-        {
-            fastMotion = true;
-            jump = true;
-            burrow = true;
-        }
-        else if (animal == Animal.Turtle)
-        {
-            slowMotion = true;
-            shellPlatform = true;
-        }
+    private void Start() {
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
+        collider = gameObject.GetComponent<Collider2D>();
+        staticObjectLayer = LayerMask.GetMask("Static Object");
     }
 
-    private void Update()
-    {
-        _speedSetting = fastMotion ? speedFast : speedSlow;
-        
-        Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
+    private void Update() {
+        movementDirection = Convert.ToInt32(Input.GetKey(KeyCode.RightArrow)) - Convert.ToInt32(Input.GetKey(KeyCode.LeftArrow));
 
-        // Movement
-        if (fastMotion)
-        {
-            float xSpeed = _rb.velocity.x;
-            if (Mathf.Abs(speedFast) < 7f || input.x != Math.Sign(speedFast)) {
-                _rb.velocity += Vector2.right * (1 * input.x); //acceleration
-            }
-
-            if (input.x >= 0.5f) {
-                if (Mathf.Abs(speedFast) > 0) _rb.velocity -= Vector2.right * (1 * Math.Sign(speedFast)); //deceleration
-                if (Mathf.Abs(speedFast) < 1) _rb.velocity = new Vector2(0, _rb.velocity.y); //rounding
-            }
+        if (GroundCheck() && Input.GetKeyDown(KeyCode.Z)) {
+            rigidbody.velocity += Vector2.up * jumpSpeed;
         }
-        else if (slowMotion)
-        {
-            _rb.AddForce(input * (speedSlow * Time.deltaTime * (speedMultiplier * 175)));
-            _rb.drag = 100f;
-        }
-
-        if (Input.GetButtonDown("Jump") && jump)
-        {
-            if (isTouchingGround)
-            {
-                _rb.velocity += Vector2.up * jumpHeight;
-                
-                if (Input.GetKeyUp(KeyCode.Space) && _rb.velocity.y > 0)
-                {
-                    _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y / 2);
-                }
-            }
-        }
+        if (Input.GetKeyUp(KeyCode.Z) && rigidbody.velocity.y > 0) rigidbody.velocity = new Vector2(rigidbody.velocity.x, rigidbody.velocity.y / 2);
     }
 
-    private void OnCollisionStay2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Ground"))
-        {
-            isTouchingGround = true;
-        }
+    private bool GroundCheck() {
+        Vector2 bottomOrigin = collider.bounds.center - new Vector3(0, collider.bounds.extents.y);
+        Collider2D hitObject = Physics2D.OverlapArea(bottomOrigin + groundCheckArea / 2, bottomOrigin - groundCheckArea / 2, staticObjectLayer);
+        return hitObject != null;
     }
 
-    private void OnCollisionExit2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Ground"))
-        {
-            isTouchingGround = false;
+    private void FixedUpdate() {
+        float xSpeed = rigidbody.velocity.x;
+        if (Mathf.Abs(xSpeed) < xSpeedLimit || movementDirection != Math.Sign(xSpeed)) {
+            rigidbody.velocity += Vector2.right * acceleration * movementDirection; //acceleration
+        }
+
+        if (movementDirection == 0) {
+            if (Mathf.Abs(xSpeed) > 0) rigidbody.velocity -= Vector2.right * deceleration * Math.Sign(xSpeed); //deceleration
+            if (Mathf.Abs(xSpeed) < deceleration) rigidbody.velocity = new Vector2(0, rigidbody.velocity.y); //rounding
         }
     }
 }
