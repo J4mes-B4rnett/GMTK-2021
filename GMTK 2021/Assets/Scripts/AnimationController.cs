@@ -16,16 +16,13 @@ public class AnimationController : MonoBehaviour
     public RabbitState rabbitState = RabbitState.idle;
     public TurtleState turtleState = TurtleState.idle;
     public Layer layer;
-    
-    void Start()
-    {
-        layer = baseController.animal == Controller.Animal.Rabbit ? Layer.Rabbit : Layer.Turtle;
-    }
 
     
     public void UpdateState()
     {
-        if(layer == Layer.Rabbit)
+        layer = baseController.animal == Controller.Animal.Rabbit ? Layer.Rabbit : Layer.Turtle;
+
+        if (layer == Layer.Rabbit)
         {
             rabbitAnim.enabled = true;
             turtleAnim.enabled = false;
