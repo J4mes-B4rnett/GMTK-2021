@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -8,10 +9,12 @@ public class FlagPole : MonoBehaviour
     public Vector3Int flagCellID;
     public List<TileBase> animationFrames;
     public float timeBetweenframes;
+
     void Start()
     {
         StartCoroutine(AnimateFlag(timeBetweenframes));
     }
+
     IEnumerator AnimateFlag(float t)
     {
         tilemap.SetTile(flagCellID, animationFrames[0]);
@@ -23,6 +26,5 @@ public class FlagPole : MonoBehaviour
         tilemap.SetTile(flagCellID, animationFrames[3]);
         yield return new WaitForSeconds(t);
         StartCoroutine(AnimateFlag(t));
-
     }
 }
