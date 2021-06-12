@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Editor;
 using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D[] boxCol; // All of the box colliders
     public bool enableColliders = false; // Should we enable the colliders?
+
+    private Vector3 localTarget;
 
     void Awake()
     {
@@ -30,13 +33,18 @@ public class Shell : MonoBehaviour
                 boxCol[i].enabled = false;
             }
         }
+
+        if (localTarget == transform.position)
+        {
+            enableColliders = true;
+        }
     }
     
     public void ThrowShell(Vector2 target, float waitTime) // Begin the coroutine
     {
         enableColliders = false; // Disable collision when the shell is moving
         StartCoroutine(MoveToTarget(target, waitTime));
-        enableColliders = true; // Re-enable it when its done moving
+        localTarget = target;
     }
     
     public IEnumerator MoveToTarget(Vector2 target, float waitTime)

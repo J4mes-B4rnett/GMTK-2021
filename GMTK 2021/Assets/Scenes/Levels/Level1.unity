@@ -29690,7 +29690,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c3d087c780226441a6152f0e4e5f127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isActive: 0
+  isActive: 1
   fastMotion: 0
   jump: 0
   burrow: 0
