@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 735173089}
   - component: {fileID: 735173091}
   m_Layer: 0
-  m_Name: Default
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9922,11 +9922,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fastMotion: 0
-  jump: 1
+  jump: 0
   burrow: 0
-  slowMotion: 0
-  shellActivated: 0
-  wallWalk: 0
+  slowMotion: 1
+  shellActivated: 1
+  wallWalk: 1
   speedSlow: 5
   speedFast: 10
   speedMultiplier: 30
@@ -9934,7 +9934,7 @@ MonoBehaviour:
   isTouchingGround: 1
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
   currentShell: {fileID: 0}
-  animal: 0
+  animal: 1
 --- !u!50 &2081805867
 Rigidbody2D:
   serializedVersion: 4
