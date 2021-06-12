@@ -6,6 +6,8 @@ using UnityEngine.Animations;
 
 public class Controller : MonoBehaviour
 {
+    public bool isActive;
+    [Space]
     [Header("Ability Tracking")]
     
     // Rabbit Default Abilities
@@ -79,6 +81,7 @@ public class Controller : MonoBehaviour
     
     private void FixedUpdate()
     {
+        if (!isActive) { _rb.velocity = new Vector2(0, _rb.velocity.y); return; }
         _speedSetting = fastMotion ? speedFast : speedSlow; // Set the default speed setting
         
         Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f); // Get raw inputs
@@ -109,6 +112,7 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
+        if (!isActive) { _rb.velocity = new Vector2(0, _rb.velocity.y); return; }
         isFlipped = _rb.velocity.x < 0 ? true : _rb.velocity.x > 0 ? false : isFlipped;
         GetComponent<SpriteRenderer>().flipX = isFlipped;
 
