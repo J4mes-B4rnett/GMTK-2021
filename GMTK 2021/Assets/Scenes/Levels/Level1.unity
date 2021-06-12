@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -28385,7 +28385,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.8328996, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.63529414, g: 0.427451, b: 0.24705884, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -28563,6 +28563,7 @@ MonoBehaviour:
   isTouchingGround: 1
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
   currentShell: {fileID: 0}
+  canThrow: 1
   animal: 0
 --- !u!50 &2081805867
 Rigidbody2D:
