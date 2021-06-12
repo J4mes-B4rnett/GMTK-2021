@@ -19,6 +19,7 @@ public class Controller : MonoBehaviour
     public bool slowMotion = false;
     public bool shellActivated = false;
     public bool wallWalk = false;
+    public bool swimming = false;
 
     public enum Animal
     {
@@ -73,6 +74,7 @@ public class Controller : MonoBehaviour
             slowMotion = false;
             shellActivated = false;
             wallWalk = false;
+            swimming = false;
         }
         else if (animal == Animal.Turtle) // Default Turtle Traits
         {
@@ -81,7 +83,7 @@ public class Controller : MonoBehaviour
             wallWalk = true;
             fastMotion = false;
             burrow = false;
-            
+            swimming = true;
         }
     }
     
