@@ -1,29 +1,46 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PointSystem : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI UIpointDisplay;
     public int startValue;
+    int desiredValue;
     public int currentValue { get; private set; }
+
 
     void Start()
     {
         currentValue = startValue;
+        desiredValue = startValue;
+        UIpointDisplay.text = currentValue.ToString();
     }
 
-
-    void check()
+    IEnumerator pointShift(int delta)
     {
-        if(currentValue <= 0)
+        int direction = delta > 0 ? 1 : -1;
+        while(delta != 0)
+        {
+            currentValue += 1 * direction;
+            delta -= 1 * direction;
+            UIpointDisplay.text = currentValue.ToString();
+            yield return new WaitForSeconds(0.02f);
+        }
+        checkIfDead();
+    }
+
+    public void ChangePoints(int delta)
+    {
+        desiredValue += delta;
+        StartCoroutine(pointShift(desiredValue-currentValue));
+    }
+
+    void checkIfDead()
+    {
+        if (currentValue <= 0)
         {
             //Die
         }
-    }
-    
-    public void ChangeValue(int delta)
-    {
-        currentValue += delta;
-        check();
     }
 }
