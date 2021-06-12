@@ -123,11 +123,11 @@ public class Controller : MonoBehaviour
                     currentShell = Instantiate(shell, position, Quaternion.identity); // Instantiate the shell at this pos
                     if (isFlipped)
                     {
-                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x - 5, position.y - 3), 5f); // Set the target position for the shell to go to
+                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x - 5, position.y - .1f), 5f); // Set the target position for the shell to go to
                     }
                     else
                     {
-                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, position.y - 3), 5f); // Set the target position for the shell to go to
+                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, position.y - .1f), 5f); // Set the target position for the shell to go to
                     }
 
                     shellThrown = true; // Set the shell to thrown
