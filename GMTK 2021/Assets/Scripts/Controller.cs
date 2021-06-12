@@ -68,12 +68,18 @@ public class Controller : MonoBehaviour
             fastMotion = true;
             jump = true;
             burrow = true;
+            slowMotion = false;
+            shellActivated = false;
+            wallWalk = false;
         }
         else if (animal == Animal.Turtle) // Default Turtle Traits
         {
             slowMotion = true;
             shellActivated = true;
             wallWalk = true;
+            fastMotion = false;
+            burrow = false;
+            
         }
     }
     
