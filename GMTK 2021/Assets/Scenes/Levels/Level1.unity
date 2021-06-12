@@ -1130,6 +1130,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 822110982, guid: 2b7c40b8417f51d44b4057326c87b660, type: 3}
+      propertyPath: m_GeometryType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 822110982, guid: 2b7c40b8417f51d44b4057326c87b660, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_ColliderPaths.Array.data[0].Array.data[0].X
       value: 70000000
       objectReference: {fileID: 0}
