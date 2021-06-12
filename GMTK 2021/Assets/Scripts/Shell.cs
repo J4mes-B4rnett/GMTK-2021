@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
+    public void ThrowShell(Vector2 target, float waitTime)
+    {
+        StartCoroutine(MoveToTarget(target, waitTime));
+    }
+    
     public IEnumerator MoveToTarget(Vector2 target, float waitTime)
     {
         float elapsedTime = 0f;

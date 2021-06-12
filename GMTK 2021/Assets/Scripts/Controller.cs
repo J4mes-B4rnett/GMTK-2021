@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using UnityEngine.Animations;
 
@@ -44,6 +45,7 @@ public class Controller : MonoBehaviour
     private Rigidbody2D _rb;
     
     // Shell Ability
+    [Header("Shell")]
     [SerializeField] private GameObject shell;
     
     public Animal animal;
@@ -104,7 +106,9 @@ public class Controller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                Instantiate();
+                var position = transform.position;
+                var turtleShell = Instantiate(shell, position, Quaternion.identity);
+                turtleShell.GetComponent<Shell>().ThrowShell(new Vector2(transform.position.x + 5, 0f), 5f);
             }
         }
     }
