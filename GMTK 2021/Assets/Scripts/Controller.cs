@@ -47,9 +47,9 @@ public class Controller : MonoBehaviour
     // Shell Ability
     [Header("Shell")]
     [SerializeField] private GameObject shell;
-
     [SerializeField] public bool shellThrown { get; private set; }
     [SerializeField] private GameObject currentShell;
+    [SerializeField] private bool canThrow = true;
     
     // Animal Type
     [Header("Animal Type")]
@@ -100,7 +100,7 @@ public class Controller : MonoBehaviour
             // As long as we are currently touching the ground, and our collider is NOT null, jump.
             if (isTouchingGround && _hit.collider != null)
             {
-                _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
+                _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight), ForceMode2D.Impulse);
             }
 
             isTouchingGround = false;
@@ -111,10 +111,10 @@ public class Controller : MonoBehaviour
     {
         isFlipped = _rb.velocity.x < 0 ? true : _rb.velocity.x > 0 ? false : isFlipped;
         GetComponent<SpriteRenderer>().flipX = isFlipped;
-        
+
         if (shellActivated) // When the shell is activated
         {
-            if (Input.GetKeyDown(KeyCode.Z)) // When Z Key is pressed
+            if (Input.GetKeyDown(KeyCode.Z) && canThrow) // When Z Key is pressed
             {
                 if (!shellThrown) // If the shell hasn't already been thrown
                 {
@@ -129,6 +129,8 @@ public class Controller : MonoBehaviour
                         currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, position.y - .1f), 5f); // Set the target position for the shell to go to
                     }
 
+                    canThrow = false;
+                    StartCoroutine(Cooldown(.5f));
                     shellThrown = true; // Set the shell to thrown
                 }
                 else
@@ -155,5 +157,11 @@ public class Controller : MonoBehaviour
         {
             isTouchingGround = false;
         }
+    }
+
+    IEnumerator Cooldown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canThrow = true;
     }
 }
