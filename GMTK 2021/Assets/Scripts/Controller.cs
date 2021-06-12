@@ -15,7 +15,7 @@ public class Controller : MonoBehaviour
 
     // Turtle Default Abilities
     public bool slowMotion = false;
-    public bool shellPlatform = false;
+    public bool shellActivated = false;
 
     public enum Animal
     {
@@ -59,7 +59,7 @@ public class Controller : MonoBehaviour
         else if (animal == Animal.Turtle)
         {
             slowMotion = true;
-            shellPlatform = true;
+            shellActivated = true;
         }
     }
     
@@ -80,10 +80,10 @@ public class Controller : MonoBehaviour
 
             // invert the bitmask
             playerMask = ~playerMask;
-
+            
             // Casting our ray downwards (.55f, which is slightly bigger than the player)
             _hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, playerMask);
-
+            
             // As long as we are currently touching the ground, and our collider is NOT null, jump.
             if (isTouchingGround && _hit.collider != null)
             {
@@ -91,6 +91,17 @@ public class Controller : MonoBehaviour
             }
 
             isTouchingGround = false;
+        }
+
+        if (animal == Animal.Turtle && !shellActivated)
+        {
+            // Change animation state to turtle with no shell.
+        }
+        else if (shellActivated)
+        {
+            if (Input.GetKeyDown(KeyCode.Z))
+            { //Instantiate();
+            }
         }
     }
 
