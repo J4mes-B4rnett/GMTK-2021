@@ -5,7 +5,7 @@ using UnityEngine;
 public class Water : MonoBehaviour
 {
 
-    Rigidbody2D character;
+    [SerializeField] Rigidbody2D character;
     public float pushForce;
     void Start()
     {

@@ -7,6 +7,7 @@ using UnityEngine.Animations;
 public class Controller : MonoBehaviour
 {
     public bool isActive;
+    public PointSystem pointSystem;
     [Space]
     [Header("Ability Tracking")]
     
@@ -135,6 +136,7 @@ public class Controller : MonoBehaviour
             {
                 if (!shellThrown) // If the shell hasn't already been thrown
                 {
+                    pointSystem.ChangePoints(30);
                     shellForceFeedback = true;
                     var position = transform.position; // Create copy of the current pos
                     currentShell = Instantiate(shell, position, Quaternion.identity); // Instantiate the shell at this pos
