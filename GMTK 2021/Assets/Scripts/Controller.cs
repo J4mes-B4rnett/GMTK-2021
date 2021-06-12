@@ -38,7 +38,8 @@ public class Controller : MonoBehaviour
     public float jumpHeight;
 
     [SerializeField]
-    private bool isTouchingGround;
+    internal bool isTouchingGround; // This was private, changed to internal due to an inaccesible error in the animatorController.
+    RaycastHit2D hit; // Used to cast a ray downwards, detects ground.
 
     private Rigidbody2D _rb;
     
@@ -48,6 +49,7 @@ public class Controller : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         
+        // Initializing our animals and their abilities based on their animal type (enum).
         if (animal == Animal.Rabbit)
         {
             fastMotion = true;
@@ -66,12 +68,20 @@ public class Controller : MonoBehaviour
         _speedSetting = fastMotion ? speedFast : speedSlow;
         
         Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
-
+        Debug.DrawRay(transform.position, Vector2.down * .55f);
         // Moves the player
         _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
         if (Input.GetButton("Jump") && jump && isTouchingGround)
         {
-            if (isTouchingGround)
+            // Bitmask
+            int playerMask = 1 << 9;
+            // invert the bitmask
+            playerMask = ~playerMask;
+            // Casting our ray downwards (.55f, which is slightly bigger than the player)
+            hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, playerMask);
+
+            // As long as we are currently touching the ground, and our collider is NOT null, jump.
+            if (isTouchingGround && hit.collider != null)
             {
                 _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
             }
@@ -80,6 +90,7 @@ public class Controller : MonoBehaviour
         }
     }
 
+    // Our ground detection functions
     private void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
