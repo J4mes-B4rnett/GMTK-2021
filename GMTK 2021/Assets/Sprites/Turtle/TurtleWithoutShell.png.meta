@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: 6bcb630ef2e5fd54bb362b3c47c89416
+guid: 7ea18d3131048034da6b7f55f061e967
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4210034265193984616
-    second: spr_turlte_walk_0
+      213: 4040899783470053739
+    second: TurtleWithoutShell_0
   - first:
-      213: -8348622990924123613
-    second: spr_turlte_walk_1
+      213: 8486262803563500846
+    second: TurtleWithoutShell_1
   - first:
-      213: 5393860956694397031
-    second: spr_turlte_walk_2
+      213: -2529461895675696964
+    second: TurtleWithoutShell_2
   - first:
-      213: 2721049671723521426
-    second: spr_turlte_walk_3
+      213: -1586492030045522605
+    second: TurtleWithoutShell_3
   - first:
-      213: -3230960384583300321
-    second: spr_turlte_walk_4
+      213: 7324298236890398079
+    second: TurtleWithoutShell_4
   - first:
-      213: 4696764588236937574
-    second: spr_turlte_walk_5
+      213: -9045356493121273636
+    second: TurtleWithoutShell_5
   - first:
-      213: -7514938086110650682
-    second: spr_turlte_walk_6
+      213: -7555234606704159216
+    second: TurtleWithoutShell_6
   - first:
-      213: 4518797286608279827
-    second: spr_turlte_walk_7
+      213: 9054509368874342893
+    second: TurtleWithoutShell_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -135,169 +135,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: spr_turlte_walk_0
+      name: TurtleWithoutShell_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 5
         y: 0
-        width: 22
-        height: 13
+        width: 21
+        height: 8
       alignment: 9
-      pivot: {x: 0.4920506, y: 0.69182384}
+      pivot: {x: 0.50000006, y: 1.0195175}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89dc3ea3424f295c0800000000000000
-      internalID: -4210034265193984616
+      spriteID: b697fa681f8241830800000000000000
+      internalID: 4040899783470053739
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_1
+      name: TurtleWithoutShell_1
       rect:
         serializedVersion: 2
-        x: 27
+        x: 28
         y: 0
-        width: 22
-        height: 13
+        width: 21
+        height: 7
       alignment: 9
-      pivot: {x: 0.48677063, y: 0.63218415}
+      pivot: {x: 0.49711174, y: 1.0802698}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 322fe466f9bb32c80800000000000000
-      internalID: -8348622990924123613
+      spriteID: e255305ce0345c570800000000000000
+      internalID: 8486262803563500846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_2
+      name: TurtleWithoutShell_2
       rect:
         serializedVersion: 2
         x: 50
         y: 0
         width: 21
-        height: 13
+        height: 8
       alignment: 9
-      pivot: {x: 0.44443277, y: 0.6960725}
+      pivot: {x: 0.49711174, y: 1.0003946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7604e9356f7dada40800000000000000
-      internalID: 5393860956694397031
+      spriteID: cb82d5bbecb85ecd0800000000000000
+      internalID: -2529461895675696964
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_3
+      name: TurtleWithoutShell_3
       rect:
         serializedVersion: 2
         x: 73
         y: 0
         width: 21
-        height: 13
+        height: 8
       alignment: 9
-      pivot: {x: 0.43369585, y: 0.679078}
+      pivot: {x: 0.5, y: 1.0003946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 295164b724c13c520800000000000000
-      internalID: 2721049671723521426
+      spriteID: 355f52e77e5abf9e0800000000000000
+      internalID: -1586492030045522605
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_4
+      name: TurtleWithoutShell_4
       rect:
         serializedVersion: 2
         x: 96
         y: 0
         width: 21
-        height: 13
+        height: 8
       alignment: 9
-      pivot: {x: 0.4390742, y: 0.6962316}
+      pivot: {x: 0.5028879, y: 0.9928128}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1b8d8906a25923d0800000000000000
-      internalID: -3230960384583300321
+      spriteID: f7d3fdec07225a560800000000000000
+      internalID: 7324298236890398079
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_5
+      name: TurtleWithoutShell_5
       rect:
         serializedVersion: 2
-        x: 119
+        x: 120
         y: 0
-        width: 21
-        height: 13
+        width: 20
+        height: 7
       alignment: 9
-      pivot: {x: 0.43907458, y: 0.62352765}
+      pivot: {x: 0.49748915, y: 1.1522932}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6691f7b22824e2140800000000000000
-      internalID: 4696764588236937574
+      spriteID: cd0cbb0a130787280800000000000000
+      internalID: -9045356493121273636
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_6
+      name: TurtleWithoutShell_6
       rect:
         serializedVersion: 2
         x: 142
         y: 0
         width: 21
-        height: 13
+        height: 8
       alignment: 9
-      pivot: {x: 0.47888038, y: 0.7046971}
+      pivot: {x: 0.5, y: 0.9928128}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6ce125460a395b790800000000000000
-      internalID: -7514938086110650682
+      spriteID: 01619a0972a662790800000000000000
+      internalID: -7555234606704159216
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: spr_turlte_walk_7
+      name: TurtleWithoutShell_7
       rect:
         serializedVersion: 2
         x: 165
         y: 0
         width: 21
-        height: 13
+        height: 8
       alignment: 9
-      pivot: {x: 0.47613162, y: 0.70038474}
+      pivot: {x: 0.49999928, y: 1.0003946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3191948c03ef5be30800000000000000
-      internalID: 4518797286608279827
+      spriteID: de993335c4418ad70800000000000000
+      internalID: 9054509368874342893
       vertices: []
       indices: 
       edges: []
