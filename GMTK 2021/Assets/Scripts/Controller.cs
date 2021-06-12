@@ -52,20 +52,25 @@ public class Controller : MonoBehaviour
     [SerializeField] private bool shellThrown;
     [SerializeField] private GameObject currentShell;
     
+    // Animal Type
+    [Header("Animal Type")]
     public Animal animal;
+    
+    // Direction
+    private bool isFlipped;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         
         // Initializing our animals and their abilities based on their animal type (enum).
-        if (animal == Animal.Rabbit)
+        if (animal == Animal.Rabbit) // Default Rabbit Traits
         {
             fastMotion = true;
             jump = true;
             burrow = true;
         }
-        else if (animal == Animal.Turtle)
+        else if (animal == Animal.Turtle) // Default Turtle Traits
         {
             slowMotion = true;
             shellActivated = true;
@@ -75,11 +80,10 @@ public class Controller : MonoBehaviour
     
     private void FixedUpdate()
     {
-        _speedSetting = fastMotion ? speedFast : speedSlow;
+        _speedSetting = fastMotion ? speedFast : speedSlow; // Set the default speed setting
         
-        Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
-        Debug.DrawRay(transform.position, Vector2.down * .55f);
-        
+        Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f); // Get raw inputs
+
         // Moves the player
         _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
         
@@ -106,26 +110,32 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        if (animal == Animal.Turtle && !shellActivated)
+        isFlipped = _rb.velocity.x < 0 ? true : _rb.velocity.x > 0 ? false : isFlipped;
+        GetComponent<SpriteRenderer>().flipX = isFlipped;
+        
+        if (shellActivated) // When the shell is activated
         {
-
-        }
-        else if (shellActivated)
-        {
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (Input.GetKeyDown(KeyCode.Z)) // When Z Key is pressed
             {
-                if (!shellThrown)
+                if (!shellThrown) // If the shell hasn't already been thrown
                 {
-                    var position = transform.position;
-                    currentShell = Instantiate(shell, position, Quaternion.identity);
-                    currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, 0f), 5f);
+                    var position = transform.position; // Create copy of the current pos
+                    currentShell = Instantiate(shell, position, Quaternion.identity); // Instantiate the shell at this pos
+                    if (isFlipped)
+                    {
+                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x - 5, position.y - 3), 5f); // Set the target position for the shell to go to
+                    }
+                    else
+                    {
+                        currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, position.y - 3), 5f); // Set the target position for the shell to go to
+                    }
 
-                    shellThrown = true;
+                    shellThrown = true; // Set the shell to thrown
                 }
                 else
                 {
-                    Destroy(currentShell.gameObject);
-                    shellThrown = false;
+                    Destroy(currentShell.gameObject); // Destroy the old shell
+                    shellThrown = false; // Set the shell to not thrown
                 }
             }
         }
