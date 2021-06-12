@@ -19,6 +19,7 @@ public class Controller : MonoBehaviour
     public bool slowMotion = false;
     public bool shellActivated = false;
     public bool wallWalk = false;
+    public bool swimming = false;
 
     public enum Animal
     {
@@ -52,14 +53,14 @@ public class Controller : MonoBehaviour
     [SerializeField] public bool shellThrown { get; private set; }
     [SerializeField] private GameObject currentShell;
     [SerializeField] private bool canThrow = true;
-    
+    private bool shellForceFeedback;
     // Animal Type
     [Header("Animal Type")]
     public Animal animal;
     
     // Direction
     private bool isFlipped;
-
+    
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -73,6 +74,7 @@ public class Controller : MonoBehaviour
             slowMotion = false;
             shellActivated = false;
             wallWalk = false;
+            swimming = false;
         }
         else if (animal == Animal.Turtle) // Default Turtle Traits
         {
@@ -81,7 +83,7 @@ public class Controller : MonoBehaviour
             wallWalk = true;
             fastMotion = false;
             burrow = false;
-            
+            swimming = true;
         }
     }
     
@@ -114,6 +116,11 @@ public class Controller : MonoBehaviour
 
             isTouchingGround = false;
         }
+        if(shellForceFeedback)
+        {
+            shellForceFeedback = false;
+            _rb.AddForce(Vector2.up * 250);
+        }
     }
 
     private void Update()
@@ -128,6 +135,7 @@ public class Controller : MonoBehaviour
             {
                 if (!shellThrown) // If the shell hasn't already been thrown
                 {
+                    shellForceFeedback = true;
                     var position = transform.position; // Create copy of the current pos
                     currentShell = Instantiate(shell, position, Quaternion.identity); // Instantiate the shell at this pos
                     if (isFlipped)

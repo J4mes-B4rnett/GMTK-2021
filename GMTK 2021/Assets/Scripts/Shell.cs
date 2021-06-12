@@ -19,18 +19,18 @@ public class Shell : MonoBehaviour
     {
         if (enableColliders) // If we want to enable the colliders
         {
-            GetComponent<BoxCollider2D>().enabled = true;
+            GetComponent<BoxCollider2D>().isTrigger = false;
             for (var i = 0; i < boxCol.Length; i++)
             {
-                boxCol[i].enabled = true;
+                boxCol[i].isTrigger = false;
             }
         }
         else // If we want to disable the colliders
         {
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<BoxCollider2D>().isTrigger = true;
             for (var i = 0; i < boxCol.Length; i++)
             {
-                boxCol[i].enabled = false;
+                boxCol[i].isTrigger = true;
             }
         }
 
@@ -58,5 +58,13 @@ public class Shell : MonoBehaviour
             yield return null; // Return
         }
         yield return null; // Return
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Rabbit")
+        {
+            collision.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 250);
+
+        }
     }
 }
