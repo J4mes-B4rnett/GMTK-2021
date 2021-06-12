@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -417,6 +417,8 @@ GameObject:
   - component: {fileID: 2081805867}
   - component: {fileID: 2081805868}
   - component: {fileID: 2081805869}
+  - component: {fileID: 2081805871}
+  - component: {fileID: 2081805870}
   m_Layer: 0
   m_Name: Base Controller
   m_TagString: Untagged
@@ -464,7 +466,7 @@ MonoBehaviour:
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
   shellThrown: 0
   currentShell: {fileID: 0}
-  animal: 1
+  animal: 0
 --- !u!50 &2081805867
 Rigidbody2D:
   serializedVersion: 4
@@ -562,6 +564,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15997699, y: 0.1571961}
   m_EdgeRadius: 0
+--- !u!114 &2081805870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081805864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55f395be738a7f47901fafa54f85997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 2081805871}
+  rabbitAnimController: {fileID: 9100000, guid: f3b434c9a16e4a441951ccda862d7747,
+    type: 2}
+  turtleAnimController: {fileID: 9100000, guid: b657fca8dc5aeb14983d30729cb63c97,
+    type: 2}
+  turtleWithoutShellAnimController: {fileID: 9100000, guid: f02a82ea1851a504e985b094d9b06b7c,
+    type: 2}
+  baseController: {fileID: 2081805866}
+  animState: 0
+  layer: 0
+--- !u!95 &2081805871
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2081805864}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b657fca8dc5aeb14983d30729cb63c97, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &2550670872076442516
 PrefabInstance:
   m_ObjectHideFlags: 0
