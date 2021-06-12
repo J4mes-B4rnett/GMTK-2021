@@ -95,7 +95,7 @@ public class Controller : MonoBehaviour
 
         if (animal == Animal.Turtle && !shellActivated)
         {
-            // Change animation state to turtle with no shell.
+
         }
         else if (shellActivated)
         {
