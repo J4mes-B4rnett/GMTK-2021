@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class AbilitiesUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
+public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    [SerializeField] Canvas canvas;
+    public Canvas canvas;
+    public AbilityHolder slot;
     CanvasGroup canvasGroup;
     RectTransform rectTransform;
+    Vector2 prevPos;
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -14,7 +16,9 @@ public class AbilitiesUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        prevPos = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
+        if(slot) slot.ability = null;
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -23,24 +27,11 @@ public class AbilitiesUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        StartCoroutine(revertPosition());
     }
-    public void OnPointerDown(PointerEventData eventData)
+    IEnumerator revertPosition()
     {
-        
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-        
-    }
-
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
+        yield return new WaitForSeconds(0.01f);
+        if (!slot.ability) rectTransform.anchoredPosition = prevPos; 
     }
 }
