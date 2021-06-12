@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TreeEditor;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -17,7 +18,6 @@ public class Controller : MonoBehaviour
     // Turtle Default Abilities
     public bool slowMotion = false;
     public bool shellActivated = false;
-    public bool wallWalk = false;
 
     public enum Animal
     {
@@ -74,7 +74,6 @@ public class Controller : MonoBehaviour
         {
             slowMotion = true;
             shellActivated = true;
-            wallWalk = true;
         }
     }
     
@@ -156,5 +155,19 @@ public class Controller : MonoBehaviour
         {
             isTouchingGround = false;
         }
+    }
+    
+    public IEnumerator Rotate(float rotation, float waitTime)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < waitTime)
+        {
+            Vector3 angles = transform.localEulerAngles;
+            transform.localEulerAngles = new Vector3(angles.x, angles.y, Mathf.Lerp(angles.z, rotation, elapsedTime));
+            elapsedTime += Time.deltaTime; // Add to elapsed time
+            yield return null; // Return
+        }
+        yield return null; // Return
     }
 }
