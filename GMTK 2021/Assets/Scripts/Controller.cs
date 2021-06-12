@@ -43,6 +43,9 @@ public class Controller : MonoBehaviour
 
     private Rigidbody2D _rb;
     
+    // Shell Ability
+    [SerializeField] private GameObject shell;
+    
     public Animal animal;
 
     private void Awake()
@@ -100,7 +103,8 @@ public class Controller : MonoBehaviour
         else if (shellActivated)
         {
             if (Input.GetKeyDown(KeyCode.Z))
-            { //Instantiate();
+            {
+                Instantiate();
             }
         }
     }
