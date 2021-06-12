@@ -17,6 +17,7 @@ public class Controller : MonoBehaviour
     // Turtle Default Abilities
     public bool slowMotion = false;
     public bool shellActivated = false;
+    public bool wallWalk = false;
 
     public enum Animal
     {
@@ -47,6 +48,9 @@ public class Controller : MonoBehaviour
     // Shell Ability
     [Header("Shell")]
     [SerializeField] private GameObject shell;
+
+    [SerializeField] private bool shellThrown;
+    [SerializeField] private GameObject currentShell;
     
     public Animal animal;
 
@@ -65,6 +69,7 @@ public class Controller : MonoBehaviour
         {
             slowMotion = true;
             shellActivated = true;
+            wallWalk = true;
         }
     }
     
@@ -97,7 +102,10 @@ public class Controller : MonoBehaviour
 
             isTouchingGround = false;
         }
+    }
 
+    private void Update()
+    {
         if (animal == Animal.Turtle && !shellActivated)
         {
 
@@ -106,9 +114,19 @@ public class Controller : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                var position = transform.position;
-                var turtleShell = Instantiate(shell, position, Quaternion.identity);
-                turtleShell.GetComponent<Shell>().ThrowShell(new Vector2(transform.position.x + 5, 0f), 5f);
+                if (!shellThrown)
+                {
+                    var position = transform.position;
+                    currentShell = Instantiate(shell, position, Quaternion.identity);
+                    currentShell.GetComponent<Shell>().ThrowShell(new Vector2(position.x + 5, 0f), 5f);
+
+                    shellThrown = true;
+                }
+                else
+                {
+                    Destroy(currentShell.gameObject);
+                    shellThrown = false;
+                }
             }
         }
     }
