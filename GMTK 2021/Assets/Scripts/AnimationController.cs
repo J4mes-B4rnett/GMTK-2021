@@ -39,8 +39,8 @@ public class AnimationController : MonoBehaviour
     public void UpdateState()
     {
         if (baseController.animal == Controller.Animal.Rabbit) layer = Layer.Rabbit;
-        if (baseController.animal == Controller.Animal.Turtle && baseController.shellActivated) layer = Layer.TurtleWithoutShell;
-        if (baseController.animal == Controller.Animal.Turtle && !baseController.shellActivated) layer = Layer.Turtle;
+        if (baseController.animal == Controller.Animal.Turtle && baseController.shellThrown) layer = Layer.TurtleWithoutShell;
+        if (baseController.animal == Controller.Animal.Turtle && !baseController.shellThrown) layer = Layer.Turtle;
 
         switch (layer)
         {

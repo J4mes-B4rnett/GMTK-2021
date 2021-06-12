@@ -49,7 +49,7 @@ public class Controller : MonoBehaviour
     [Header("Shell")]
     [SerializeField] private GameObject shell;
 
-    [SerializeField] private bool shellThrown;
+    [SerializeField] public bool shellThrown { get; private set; }
     [SerializeField] private GameObject currentShell;
     
     // Animal Type

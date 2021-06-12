@@ -464,9 +464,8 @@ MonoBehaviour:
   jumpHeight: 10000
   isTouchingGround: 1
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
-  shellThrown: 0
   currentShell: {fileID: 0}
-  animal: 0
+  animal: 1
 --- !u!50 &2081805867
 Rigidbody2D:
   serializedVersion: 4
