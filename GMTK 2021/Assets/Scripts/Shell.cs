@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using Cinemachine.Editor;
 using UnityEngine;
 
 public class Shell : MonoBehaviour

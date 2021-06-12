@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public Canvas canvas;

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class scr_ui_buttonManager : MonoBehaviour {
     public void StartGame(string firstLevel) {
