@@ -138,12 +138,12 @@ TextureImporter:
       name: TurtleWithoutShell_0
       rect:
         serializedVersion: 2
-        x: 5
+        x: 0
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.50000006, y: 1.0195175}
+      pivot: {x: 0.4358933, y: 0.7690389}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,12 +159,12 @@ TextureImporter:
       name: TurtleWithoutShell_1
       rect:
         serializedVersion: 2
-        x: 28
+        x: 24
         y: 0
-        width: 21
-        height: 7
+        width: 23
+        height: 9
       alignment: 9
-      pivot: {x: 0.49711174, y: 1.0802698}
+      pivot: {x: 0.425423, y: 0.7695442}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,12 +180,12 @@ TextureImporter:
       name: TurtleWithoutShell_2
       rect:
         serializedVersion: 2
-        x: 50
+        x: 48
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.49711174, y: 1.0003946}
+      pivot: {x: 0.43400508, y: 0.76173556}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,12 +201,12 @@ TextureImporter:
       name: TurtleWithoutShell_3
       rect:
         serializedVersion: 2
-        x: 73
+        x: 72
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.5, y: 1.0003946}
+      pivot: {x: 0.4406987, y: 0.747129}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,10 +224,10 @@ TextureImporter:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.5028879, y: 0.9928128}
+      pivot: {x: 0.44387418, y: 0.7558145}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -245,10 +245,10 @@ TextureImporter:
         serializedVersion: 2
         x: 120
         y: 0
-        width: 20
-        height: 7
+        width: 22
+        height: 9
       alignment: 9
-      pivot: {x: 0.49748915, y: 1.1522932}
+      pivot: {x: 0.41566327, y: 0.77897656}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,12 +264,12 @@ TextureImporter:
       name: TurtleWithoutShell_6
       rect:
         serializedVersion: 2
-        x: 142
+        x: 143
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.5, y: 0.9928128}
+      pivot: {x: 0.43752322, y: 0.75285375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -285,12 +285,12 @@ TextureImporter:
       name: TurtleWithoutShell_7
       rect:
         serializedVersion: 2
-        x: 165
+        x: 167
         y: 0
-        width: 21
-        height: 8
+        width: 23
+        height: 10
       alignment: 9
-      pivot: {x: 0.49999928, y: 1.0003946}
+      pivot: {x: 0.43881226, y: 0.78423876}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
