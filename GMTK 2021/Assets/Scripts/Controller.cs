@@ -6,9 +6,6 @@ using UnityEngine.Animations;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField]
-    bool selectedCharacter;
-
     [Header("Ability Tracking")]
     
     // Rabbit Default Abilities
@@ -42,7 +39,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField]
     internal bool isTouchingGround; // This was private, changed to internal due to an inaccesible error in the animatorController.
-    RaycastHit2D hit; // Used to cast a ray downwards, detects ground.
+    RaycastHit2D _hit; // Used to cast a ray downwards, detects ground.
 
     private Rigidbody2D _rb;
     
@@ -65,46 +62,40 @@ public class Controller : MonoBehaviour
             shellPlatform = true;
         }
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            selectedCharacter = !selectedCharacter;
-        }
-    }
+    
     private void FixedUpdate()
     {
-        if (selectedCharacter)
+        _speedSetting = fastMotion ? speedFast : speedSlow;
+        
+        Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
+        Debug.DrawRay(transform.position, Vector2.down * .55f);
+        
+        // Moves the player
+        _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
+        
+        if (Input.GetButton("Jump") && jump && isTouchingGround)
         {
-            _speedSetting = fastMotion ? speedFast : speedSlow;
+            // Bitmask
+            int playerMask = 1 << 9;
 
-            Vector2 input = new Vector2(Input.GetAxisRaw(("Horizontal")), 0f);
-            Debug.DrawRay(transform.position, Vector2.down * .55f);
-            // Moves the player
-            _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
-            if (Input.GetButton("Jump") && jump && isTouchingGround)
+            // invert the bitmask
+            playerMask = ~playerMask;
+
+            // Casting our ray downwards (.55f, which is slightly bigger than the player)
+            _hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, playerMask);
+
+            // As long as we are currently touching the ground, and our collider is NOT null, jump.
+            if (isTouchingGround && _hit.collider != null)
             {
-                // Bitmask
-                int playerMask = 1 << 9;
-                // invert the bitmask
-                playerMask = ~playerMask;
-                // Casting our ray downwards (.55f, which is slightly bigger than the player)
-                hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, playerMask);
-
-                // As long as we are currently touching the ground, and our collider is NOT null, jump.
-                if (isTouchingGround && hit.collider != null)
-                {
-                    _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
-                }
-
-                isTouchingGround = false;
+                _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight));
             }
+
+            isTouchingGround = false;
         }
     }
 
     // Our ground detection functions
-    private void OnCollisionStay2D(Collision2D col)
+    void OnCollisionStay2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
         {
@@ -112,7 +103,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D col)
+    void OnCollisionExit2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
         {
