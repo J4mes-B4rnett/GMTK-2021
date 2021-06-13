@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Button : MonoBehaviour
+public class Pressure_Plate : MonoBehaviour
 {
     // A reference to the object we want to trigger
     [SerializeField]

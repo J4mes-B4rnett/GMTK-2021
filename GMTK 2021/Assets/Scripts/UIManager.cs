@@ -13,18 +13,18 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        playButton.text = PlayerPrefs.GetInt("Tutorial") == 1 ? text1 : text2;
+        playButton.text = PlayerPrefs.GetInt("Level 1") == 1 ? text1 : text2;
     }
 
     public void LoadLevelMenu()
     {
-        if (PlayerPrefs.GetInt("Tutorial") == 1)
+        if (PlayerPrefs.GetInt("Level 1") == 1)
         {
             sTC.StartCoroutine(sTC.leaveScene("LevelManager"));
         }
         else
         {
-            sTC.StartCoroutine(sTC.leaveScene("Tutorial"));
+            sTC.StartCoroutine(sTC.leaveScene("Level 1"));
         }
     }
 
