@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3213815590400708175}
   - component: {fileID: 3213815590400708174}
+  - component: {fileID: 694223636}
+  - component: {fileID: 694223638}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -46,3 +48,34 @@ MonoBehaviour:
   selectedAnimal: 0
   Rabbit: {fileID: 0}
   Turtle: {fileID: 0}
+--- !u!114 &694223636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213815590400708173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9359a132ad6ad49b6fc3f18a3b1bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  nextSceneName: Base Scene
+  Outro: 0
+  Restart: 114
+  canRestart: 1
+--- !u!114 &694223638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213815590400708173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97b6c4c2e347f004d8f78d5ed118f8e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIpointDisplay: {fileID: 0}
+  startValue: 100

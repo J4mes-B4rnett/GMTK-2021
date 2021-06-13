@@ -32,6 +32,9 @@ public class SceneTransitionController : MonoBehaviour
         anim.SetTrigger("Outro");
         yield return new WaitForSeconds(0.8f);
         SceneManager.LoadScene(n);
-
+    }
+    public void BackButton()
+    {
+        StartCoroutine(leaveScene("LevelManager"));
     }
 }
