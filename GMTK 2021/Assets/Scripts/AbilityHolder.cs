@@ -9,12 +9,14 @@ public class AbilityHolder : MonoBehaviour, IDropHandler
     public GameObject rabbit;
     public GameObject turtle;
     public GameObject swapZone;
+    public PointSystem pointSystem;
 
     public void Start()
     {
         rabbit = GameObject.Find("Rabbit");
         turtle = GameObject.Find("Turtle");
         swapZone = GameObject.Find("SwapZone");
+        pointSystem = GameObject.Find("Game Manager").GetComponent<PointSystem>();
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -30,6 +32,7 @@ public class AbilityHolder : MonoBehaviour, IDropHandler
                     Vector2 desiredPos = this.GetComponent<RectTransform>().anchoredPosition * 0.75f;
                     desiredPos += offset.anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = desiredPos;
+                    pointSystem.ChangePoints(-10);
                 }
             }
         }
