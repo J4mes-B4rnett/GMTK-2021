@@ -145,7 +145,7 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         if (!isActive) { _rb.velocity = new Vector2(0, _rb.velocity.y); return; }
-        isFlipped = _rb.velocity.x < 0 ? true : _rb.velocity.x > 0 ? false : isFlipped;
+        isFlipped = _rb.velocity.x < -0.1 ? true : _rb.velocity.x > 0.1 ? false : isFlipped;
         GetComponent<SpriteRenderer>().flipX = isFlipped;
 
         if (shellActivated) // When the shell is activated
@@ -198,6 +198,7 @@ public class Controller : MonoBehaviour
         {
             col.rigidbody.sharedMaterial = fictionPhys;
             _rb.sharedMaterial = fictionPhys;
+            isTouchingGround = true;
         }
     }
 
