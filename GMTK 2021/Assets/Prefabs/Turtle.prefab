@@ -126,7 +126,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 485719b05a086d14595b43f9b867213d, type: 3}
   m_Color: {r: 0.41960788, g: 1, b: 0.4593306, a: 1}
   m_FlipX: 0
@@ -155,9 +155,10 @@ GameObject:
   - component: {fileID: 8006098514075879443}
   - component: {fileID: 8006098514075879437}
   - component: {fileID: 8914502004291026480}
+  - component: {fileID: 2081805873}
   m_Layer: 0
   m_Name: Turtle
-  m_TagString: Ground
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -372,7 +373,7 @@ MonoBehaviour:
   - {x: -0.6495067, y: 0.24037743, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 45600
+  m_InstanceId: -29650
 --- !u!70 &8914502004291026480
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -389,3 +390,19 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.01}
   m_Size: {x: 0.2, y: 0.15}
   m_Direction: 1
+--- !u!58 &2081805873
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8006098514075879445}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.08

@@ -10,7 +10,10 @@ public class ExitTheLevel : MonoBehaviour
         if (collision.name == "Turtle") turtleOnFinish = true;
         if(rabbitOnFinish && turtleOnFinish)
         {
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name, 1);
+            Debug.Log("Finished");
+            string name = "Level " + (int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]) + 1);
+            PlayerPrefs.SetInt(name, 1);
+            Debug.Log(name + "   " + PlayerPrefs.GetInt(name));
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

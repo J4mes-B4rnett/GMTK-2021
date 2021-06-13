@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         getButtons();
-        List<bool> values = new List<bool>() { }; 
+        List<bool> values = new List<bool>() {}; 
         for (int i = 1; i <= 10; i++)
         {
             values.Add(PlayerPrefs.GetInt("Level " + i) == 1 ? true : false);
@@ -43,6 +43,7 @@ public class LevelManager : MonoBehaviour
 
     void refreshInteractability(List<bool> interactability)
     {
+        buttons[0].interactable = true;
         for (int i = 0; i < buttons.Count; i++)
         {
             if(i < interactability.Count)

@@ -126,7 +126,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 485719b05a086d14595b43f9b867213d, type: 3}
   m_Color: {r: 1, g: 0.9850431, b: 0.4198113, a: 1}
   m_FlipX: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   speedSlow: 5
   speedFast: 10
   speedMultiplier: 30
-  fictionPhys: {fileID: 0}
+  fictionPhys: {fileID: 6200000, guid: da0b4056f039441469d2f2feccaf2850, type: 2}
   jumpHeight: 400
   isTouchingGround: 1
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
