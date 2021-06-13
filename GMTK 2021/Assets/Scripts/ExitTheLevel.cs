@@ -20,9 +20,14 @@ public class ExitTheLevel : MonoBehaviour
         {
             Debug.Log("Finished");
             string name = "Level " + (int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]) + 1);
+            int points = gameManager.GetComponent<PointSystem>().currentValue;
             PlayerPrefs.SetInt(name, 1);
+            if(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "points") > points)
+            {
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "points", points);
+            }
             Debug.Log(name + "   " + PlayerPrefs.GetInt(name));
-            winScreen.transform.Find("Image").GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Points: " + gameManager.GetComponent<PointSystem>().currentValue;
+            winScreen.transform.Find("Image").GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Points: " + points;
             winScreen.GetComponent<Animator>().SetTrigger("Win");
         }
     }

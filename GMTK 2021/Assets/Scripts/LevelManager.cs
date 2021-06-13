@@ -20,7 +20,13 @@ public class LevelManager : MonoBehaviour
         {
             values.Add(PlayerPrefs.GetInt("Level " + i) == 1 ? true : false);
         }
+        List<int> points = new List<int>();
+        for (int i = 1; i <= 10; i++)
+        {
+            points.Add(PlayerPrefs.GetInt("Level " + i +"points"));
+        }
         refreshInteractability(values);
+        refreshPoints(points);
     }
     public void Update()
     {
@@ -43,7 +49,6 @@ public class LevelManager : MonoBehaviour
 
     void refreshInteractability(List<bool> interactability)
     {
-        buttons[0].interactable = true;
         for (int i = 0; i < buttons.Count; i++)
         {
             if(i < interactability.Count)
@@ -53,6 +58,14 @@ public class LevelManager : MonoBehaviour
             {
                 buttons[i].interactable = false;
             }
+        }
+    }
+
+    void refreshPoints(List<int> points)
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].transform.Find("points").GetComponent<TMPro.TextMeshProUGUI>().text = points[i].ToString();
         }
     }
 }

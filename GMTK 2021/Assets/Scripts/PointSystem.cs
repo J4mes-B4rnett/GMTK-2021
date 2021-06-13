@@ -4,6 +4,7 @@ using TMPro;
 public class PointSystem : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI UIpointDisplay;
+    SceneTransitionController sCT;
     public int startValue;
     int desiredValue;
     public int currentValue { get; private set; }
@@ -11,6 +12,7 @@ public class PointSystem : MonoBehaviour
 
     void Start()
     {
+        sCT = GetComponent<SceneTransitionController>();
         currentValue = startValue;
         desiredValue = startValue;
         UIpointDisplay.text = currentValue.ToString();
@@ -39,7 +41,7 @@ public class PointSystem : MonoBehaviour
     {
         if (currentValue <= 0)
         {
-            //Die
+            sCT.RestartButton();
         }
     }
 }
