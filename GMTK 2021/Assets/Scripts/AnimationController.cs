@@ -18,7 +18,7 @@ public class AnimationController : MonoBehaviour
     void Update()
     {
         UpdateState();
-        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0.1f && baseController.isTouchingGround)
+        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0.2f && baseController.isTouchingGround)
         {
             animState = AnimationState.walk;
         }
