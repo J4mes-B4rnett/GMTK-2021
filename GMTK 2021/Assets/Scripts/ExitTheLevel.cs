@@ -22,7 +22,7 @@ public class ExitTheLevel : MonoBehaviour
             string name = "Level " + (int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]) + 1);
             int points = gameManager.GetComponent<PointSystem>().currentValue;
             PlayerPrefs.SetInt(name, 1);
-            if(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "points") > points)
+            if(PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "points") < points)
             {
                 PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "points", points);
             }
