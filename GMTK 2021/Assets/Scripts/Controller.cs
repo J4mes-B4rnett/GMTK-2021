@@ -143,11 +143,17 @@ public class Controller : MonoBehaviour
 
             if (animal == Animal.Rabbit)
             {
-                JumpRabbit.Play();
+                if (!JumpRabbit.isPlaying)
+                {
+                    JumpRabbit.Play();
+                }
             }
             else
             {
-                JumpTurtle.Play();
+                if (!JumpTurtle.isPlaying)
+                {
+                    JumpTurtle.Play();
+                }
             }
         }
         if (shellForceFeedback)
