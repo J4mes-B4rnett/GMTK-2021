@@ -7,7 +7,7 @@ public class Pressure_Plate : MonoBehaviour
     TriggeredObject[] triggeredObject;
 
     // If the object that we have collided with is NOT "terrain", then activate button.
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if(other.CompareTag("Player"))
         {
