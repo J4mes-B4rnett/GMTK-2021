@@ -39,6 +39,15 @@ public class SceneTransitionController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(n);
     }
+    public void NextButton()
+    {
+        string name = "Level " + (int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]) + 1);
+        StartCoroutine(leaveScene(name));
+    }
+    public void RestartButton()
+    {
+        StartCoroutine(leaveScene(SceneManager.GetActiveScene().name));
+    }
     public void BackButton()
     {
         StartCoroutine(leaveScene("LevelManager"));
