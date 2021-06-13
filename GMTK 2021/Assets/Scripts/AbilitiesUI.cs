@@ -6,6 +6,8 @@ public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 {
     public Canvas canvas;
     public AbilityHolder slot;
+    AbilityHolder prevSlot;
+    GameObject ability;
     CanvasGroup canvasGroup;
     RectTransform rectTransform;
     Vector2 prevPos;
@@ -18,7 +20,11 @@ public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     {
         prevPos = rectTransform.anchoredPosition;
         canvasGroup.blocksRaycasts = false;
-        if(slot) slot.ability = null;
+        if (slot)
+        {
+            prevSlot = slot;
+            ability = slot.ability;
+        }
     }
     public void OnDrag(PointerEventData eventData)
     {
@@ -27,11 +33,16 @@ public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.blocksRaycasts = true;
+        prevSlot.ability = null;
         StartCoroutine(revertPosition());
     }
     IEnumerator revertPosition()
     {
         yield return new WaitForSeconds(0.01f);
-        if (!slot.ability) rectTransform.anchoredPosition = prevPos;
+        if (!slot.ability)
+        {
+            rectTransform.anchoredPosition = prevPos;
+            prevSlot.ability = ability;
+        }
     }
 }
