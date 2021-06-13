@@ -6,15 +6,29 @@ public class AbilityHolder : MonoBehaviour, IDropHandler
     public GameObject ability;
     public Canvas canvas;
     public RectTransform offset;
+    public GameObject rabbit;
+    public GameObject turtle;
+    public GameObject swapZone;
+
+    public void Start()
+    {
+        rabbit = GameObject.Find("Rabbit");
+        turtle = GameObject.Find("Turtle");
+        swapZone = GameObject.Find("SwapZone");
+    }
     public void OnDrop(PointerEventData eventData)
     {
-        if(eventData.pointerDrag != null)
+        if ((rabbit.transform.position - swapZone.transform.position).magnitude <= 2 &&
+            (turtle.transform.position - swapZone.transform.position).magnitude <= 2)
         {
-            ability = eventData.pointerDrag;
-            eventData.pointerDrag.GetComponent<AbilitiesUI>().slot = this;
-            Vector2 desiredPos = this.GetComponent<RectTransform>().anchoredPosition;
-            desiredPos += offset.anchoredPosition;
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = desiredPos;
+            if (eventData.pointerDrag != null)
+            {
+                ability = eventData.pointerDrag;
+                eventData.pointerDrag.GetComponent<AbilitiesUI>().slot = this;
+                Vector2 desiredPos = this.GetComponent<RectTransform>().anchoredPosition;
+                desiredPos += offset.anchoredPosition;
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = desiredPos;
+            }
         }
     }
 }

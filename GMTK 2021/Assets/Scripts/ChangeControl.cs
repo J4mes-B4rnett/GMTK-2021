@@ -5,9 +5,12 @@ public class ChangeControl : MonoBehaviour
     public Controller.Animal selectedAnimal;
     public GameObject Rabbit;
     public GameObject Turtle;
+    GameObject rabbitArrow;
+    GameObject turtleArrow;
     private void Start()
     {
-
+        rabbitArrow = Rabbit.transform.Find("Arrow").gameObject;
+        turtleArrow = Turtle.transform.Find("Arrow").gameObject;
     }
     void Update()
     {
@@ -26,15 +29,19 @@ public class ChangeControl : MonoBehaviour
         if(selectedAnimal == Controller.Animal.Rabbit)
         {
             Rabbit.GetComponent<Controller>().isActive = true;
+            rabbitArrow.SetActive(true);
 
             Turtle.GetComponent<Controller>().isActive = false;
+            turtleArrow.SetActive(false);
             return;
         }
         if (selectedAnimal == Controller.Animal.Turtle)
         {
             Turtle.GetComponent<Controller>().isActive = true;
+            turtleArrow.SetActive(true);
 
             Rabbit.GetComponent<Controller>().isActive = false;
+            rabbitArrow.SetActive(false);
             return;
         }
     }

@@ -17,10 +17,8 @@ public class Platform : TriggeredObject
         // If it's within bounds, move towards the end position.
         if(triggered)
         {
-            Debug.Log(name + " was triggered!");
             if ((curPos - endPos).magnitude >= .5f)
             {
-                Debug.Log(name + " is moving.");
                 gameObject.transform.position -= (curPos - endPos) * Time.deltaTime;
             }
         }
@@ -28,7 +26,6 @@ public class Platform : TriggeredObject
         {
             if ((curPos - startPos).magnitude >= .05f)
             {
-                Debug.Log(name + " is moving back.");
                 gameObject.transform.position -= (curPos - startPos) * Time.deltaTime;
             }
         }

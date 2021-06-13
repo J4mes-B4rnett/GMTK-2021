@@ -5,6 +5,8 @@ public class Water : MonoBehaviour
 
     [SerializeField] Rigidbody2D character;
     public float pushForce;
+
+
     void Start()
     {
         
@@ -17,7 +19,7 @@ public class Water : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(character)
+        if(character && character.velocity.y <= 5f)
         {
             character.AddForce(Vector2.up * pushForce);
         }
@@ -35,6 +37,7 @@ public class Water : MonoBehaviour
             }
         } 
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.name == "Turtle" || collision.gameObject.name == "Rabbit")
