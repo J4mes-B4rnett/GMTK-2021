@@ -8,9 +8,11 @@ public class ExitTheLevel : MonoBehaviour
     [SerializeField] bool rabbitOnFinish;
     [SerializeField] bool turtleOnFinish;
     public GameObject winScreen;
+    [SerializeField] GameObject gameManager;
     private void Start()
     {
-        winScreen = GameObject.Find("Win screen");   
+        winScreen = GameObject.Find("Win screen");
+        gameManager = GameObject.Find("Game Manager");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +24,7 @@ public class ExitTheLevel : MonoBehaviour
             string name = "Level " + (int.Parse(SceneManager.GetActiveScene().name.Split(' ')[1]) + 1);
             PlayerPrefs.SetInt(name, 1);
             Debug.Log(name + "   " + PlayerPrefs.GetInt(name));
+            winScreen.transform.Find("Image").GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = "Points: " + gameManager.GetComponent<PointSystem>().currentValue;
             winScreen.GetComponent<Animator>().SetTrigger("Win");
         }
     }
