@@ -19,6 +19,12 @@ public class Controller : MonoBehaviour
     public bool wallWalk = false;
     public bool swimming = false;
 
+    public AudioSource DeathSoundRabbit;
+    public AudioSource DeathSoundTurtle;
+    
+    public AudioSource JumpTurtle;
+    public AudioSource JumpRabbit;
+
     public enum Animal
     {
         Rabbit,
@@ -134,6 +140,15 @@ public class Controller : MonoBehaviour
             }
 
             isTouchingGround = false;
+
+            if (animal == Animal.Rabbit)
+            {
+                JumpRabbit.Play();
+            }
+            else
+            {
+                JumpTurtle.Play();
+            }
         }
         if (shellForceFeedback)
         {
