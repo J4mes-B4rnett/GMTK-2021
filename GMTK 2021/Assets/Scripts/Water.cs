@@ -33,7 +33,7 @@ public class Water : MonoBehaviour
                 character = collision.GetComponent<Rigidbody2D>();
             } else
             {
-                //Die
+                GameObject.Find("Game Manager").GetComponent<SceneTransitionController>().RestartButton();
             }
         } 
     }
