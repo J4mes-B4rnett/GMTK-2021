@@ -479,6 +479,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1335082202644101218, guid: 66510ada1b28bdf4f9daf2b34b8e6212,
+        type: 3}
+      propertyPath: m_text
+      value: Scales and Tails
+      objectReference: {fileID: 0}
     - target: {fileID: 1335082203338214174, guid: 66510ada1b28bdf4f9daf2b34b8e6212,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

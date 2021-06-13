@@ -8,18 +8,25 @@ public class LevelManager : MonoBehaviour
     public Button[] buttons;
     public SceneTransitionController sTC;
 
-    void Awake()
+    public void Update()
     {
+        if (Input.GetKey(KeyCode.R))
+        {
+            PlayerPrefs.SetInt("Level 1", 0);
+            PlayerPrefs.SetInt("Level 2", 0);
+            PlayerPrefs.SetInt("Level 3", 0);
+        }
+        
         for (int i = 0; i < buttons.Length; i++)
         {
             string levelName = "Level " + i.ToString();
             if (PlayerPrefs.GetInt(levelName) == 1)
             {
-                buttons[i].interactable = true;
+                buttons[i].interactable = false;
             }
             else
             {
-                buttons[i].interactable = false;
+                buttons[i].interactable = true;
             }
         }
     }
