@@ -32,6 +32,6 @@ public class AbilitiesUI : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     IEnumerator revertPosition()
     {
         yield return new WaitForSeconds(0.01f);
-        if (!slot.ability) rectTransform.anchoredPosition = prevPos; 
+        if (!slot.ability) rectTransform.anchoredPosition = prevPos;
     }
 }

@@ -61,7 +61,7 @@ public class Shell : MonoBehaviour
     {
         if(collision.gameObject.name == "Rabbit" && collision.attachedRigidbody.velocity.magnitude <= 3)
         {
-            collision.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 250);
+            collision.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1.5f, ForceMode2D.Impulse);
 
         }
     }
