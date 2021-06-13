@@ -27,7 +27,7 @@ public class AbilityHolder : MonoBehaviour, IDropHandler
                 {
                     ability = eventData.pointerDrag;
                     eventData.pointerDrag.GetComponent<AbilitiesUI>().slot = this;
-                    Vector2 desiredPos = this.GetComponent<RectTransform>().anchoredPosition;
+                    Vector2 desiredPos = this.GetComponent<RectTransform>().anchoredPosition * 0.75f;
                     desiredPos += offset.anchoredPosition;
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = desiredPos;
                 }

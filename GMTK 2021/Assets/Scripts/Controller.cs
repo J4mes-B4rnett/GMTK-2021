@@ -26,8 +26,6 @@ public class Controller : MonoBehaviour
     public AudioSource JumpTurtle;
     public AudioSource JumpRabbit;
 
-    private bool inZone = false;
-
     public enum Animal
     {
         Rabbit,
@@ -68,7 +66,9 @@ public class Controller : MonoBehaviour
     
     // Direction
     private bool isFlipped;
-    
+
+    public GameObject cardsCanvas;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -241,22 +241,6 @@ public class Controller : MonoBehaviour
             col.rigidbody.sharedMaterial = null;
             _rb.sharedMaterial = null;
         }*/
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.name == "SwapZone")
-        {
-            inZone = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.gameObject.name == "SwapZone")
-        {
-            inZone = false;
-        }
     }
 
     IEnumerator Cooldown(float time)
