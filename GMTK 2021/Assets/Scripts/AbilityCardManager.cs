@@ -5,10 +5,7 @@ public class AbilityCardManager : MonoBehaviour
 {
     public Controller controller;
     [SerializeField] List<AbilityHolder> abilityHolders;
-    private void Awake()
-    {
 
-    }
     void Start()
     {
         for (int i = 0; i < this.transform.childCount; i++)
