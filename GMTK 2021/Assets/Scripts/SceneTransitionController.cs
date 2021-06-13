@@ -7,6 +7,8 @@ public class SceneTransitionController : MonoBehaviour
     public string nextSceneName;
     [SerializeField] bool Outro;
     public KeyCode Restart;
+    public bool canRestart;
+    
     void Start()
     {
         Restart = KeyCode.R;
@@ -19,17 +21,20 @@ public class SceneTransitionController : MonoBehaviour
             Outro = false;
             StartCoroutine(leaveScene(nextSceneName));
         }
-        if(Input.GetKeyDown(Restart))
+        if(Input.GetKeyDown(Restart) && canRestart)
         {
             StartCoroutine(leaveScene(SceneManager.GetActiveScene().name));
         }
 
     }
-    IEnumerator leaveScene(string n)
+    public IEnumerator leaveScene(string n)
     {
         anim.SetTrigger("Outro");
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.8f);
         SceneManager.LoadScene(n);
-
+    }
+    public void BackButton()
+    {
+        StartCoroutine(leaveScene("LevelManager"));
     }
 }
