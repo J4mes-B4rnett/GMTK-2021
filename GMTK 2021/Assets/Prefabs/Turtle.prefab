@@ -570,7 +570,6 @@ GameObject:
   - component: {fileID: 8006098514075879443}
   - component: {fileID: 8006098514075879437}
   - component: {fileID: 8914502004291026480}
-  - component: {fileID: 2081805873}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Ground
@@ -608,7 +607,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 1
-  pointSystem: {fileID: 0}
   fastMotion: 0
   jump: 0
   burrow: 0
@@ -630,6 +628,7 @@ MonoBehaviour:
   currentShell: {fileID: 0}
   canThrow: 1
   animal: 1
+  cardsCanvas: {fileID: 0}
 --- !u!50 &8006098514075879446
 Rigidbody2D:
   serializedVersion: 4
@@ -714,7 +713,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.02275692}
+  m_Offset: {x: 0, y: 0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -725,7 +724,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.11551385}
+  m_Size: {x: 0.2, y: 0.085}
   m_EdgeRadius: 0
 --- !u!95 &8006098514075879442
 Animator:
@@ -793,7 +792,7 @@ MonoBehaviour:
   - {x: -0.6495067, y: 0.24037743, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 54790
+  m_InstanceId: 90766
 --- !u!70 &8914502004291026480
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -810,22 +809,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.01}
   m_Size: {x: 0.2, y: 0.15}
   m_Direction: 1
---- !u!58 &2081805873
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8006098514075879445}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.08
 --- !u!1 &8927358143284367230
 GameObject:
   m_ObjectHideFlags: 0
