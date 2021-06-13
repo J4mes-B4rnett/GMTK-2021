@@ -11,6 +11,7 @@ public class ChangeControl : MonoBehaviour
     {
         rabbitArrow = Rabbit.transform.Find("Arrow").gameObject;
         turtleArrow = Turtle.transform.Find("Arrow").gameObject;
+        SwapAnimals();
     }
     void Update()
     {
