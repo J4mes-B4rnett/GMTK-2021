@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Controller : MonoBehaviour
@@ -24,6 +25,8 @@ public class Controller : MonoBehaviour
     
     public AudioSource JumpTurtle;
     public AudioSource JumpRabbit;
+
+    private bool inZone = false;
 
     public enum Animal
     {
@@ -238,6 +241,22 @@ public class Controller : MonoBehaviour
             col.rigidbody.sharedMaterial = null;
             _rb.sharedMaterial = null;
         }*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.name == "SwapZone")
+        {
+            inZone = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.name == "SwapZone")
+        {
+            inZone = false;
+        }
     }
 
     IEnumerator Cooldown(float time)
