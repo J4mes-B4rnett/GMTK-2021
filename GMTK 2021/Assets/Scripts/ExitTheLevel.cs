@@ -1,8 +1,6 @@
-﻿using UnityEditor.Events;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+
 public class ExitTheLevel : MonoBehaviour
 {
     [SerializeField] bool rabbitOnFinish;
