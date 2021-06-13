@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneTransitionController : MonoBehaviour
@@ -8,7 +9,12 @@ public class SceneTransitionController : MonoBehaviour
     [SerializeField] bool Outro;
     public KeyCode Restart;
     public bool canRestart;
-    
+
+    private void Awake()
+    {
+        PlayerPrefs.SetInt("Level 1", 1);
+    }
+
     void Start()
     {
         Restart = KeyCode.R;
