@@ -18,6 +18,10 @@ public class UIManager : MonoBehaviour
 
     public void LoadLevelMenu()
     {
+        //debug
+        sTC.StartCoroutine(sTC.leaveScene("LevelManager"));
+        return;
+        //end debug
         if (PlayerPrefs.GetInt("Level 1") == 1)
         {
             sTC.StartCoroutine(sTC.leaveScene("LevelManager"));

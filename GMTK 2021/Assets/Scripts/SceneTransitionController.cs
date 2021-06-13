@@ -30,7 +30,7 @@ public class SceneTransitionController : MonoBehaviour
     public IEnumerator leaveScene(string n)
     {
         anim.SetTrigger("Outro");
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(n);
     }
     public void BackButton()
