@@ -15,7 +15,7 @@ public class ChangeControl : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.T))
+        if(Input.GetKeyDown(KeyCode.Tab))
         {
             SwapAnimals();
         }
