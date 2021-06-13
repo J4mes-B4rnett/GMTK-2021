@@ -19,7 +19,7 @@ public class Water : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if(character && character.velocity.y <= 5f)
+        if(character)
         {
             character.AddForce(Vector2.up * pushForce);
         }
