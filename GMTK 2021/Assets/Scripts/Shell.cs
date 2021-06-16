@@ -20,7 +20,7 @@ public class Shell : MonoBehaviour
             GetComponent<BoxCollider2D>().isTrigger = false;
             for (var i = 0; i < boxCol.Length; i++)
             {
-                boxCol[i].isTrigger = false;
+                boxCol[i].isTrigger = true;
             }
         }
         else // If we want to disable the colliders

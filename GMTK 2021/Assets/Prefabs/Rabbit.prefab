@@ -447,7 +447,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
-  pointSystem: {fileID: 0}
   fastMotion: 0
   jump: 0
   burrow: 0
@@ -463,12 +462,15 @@ MonoBehaviour:
   speedFast: 10
   speedMultiplier: 30
   fictionPhys: {fileID: 6200000, guid: da0b4056f039441469d2f2feccaf2850, type: 2}
-  jumpHeight: 400
+  slidePhys: {fileID: 6200000, guid: a35c714dede938640a61afdfeb57ae8d, type: 2}
+  jumpHeight: 200
   isTouchingGround: 1
+  _rbOther: {fileID: 0}
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
   currentShell: {fileID: 0}
   canThrow: 1
   animal: 0
+  cardsCanvas: {fileID: 0}
 --- !u!50 &4374628560103819850
 Rigidbody2D:
   serializedVersion: 4

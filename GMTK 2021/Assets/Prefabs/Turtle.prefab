@@ -569,7 +569,7 @@ GameObject:
   - component: {fileID: 8006098514075879442}
   - component: {fileID: 8006098514075879443}
   - component: {fileID: 8006098514075879437}
-  - component: {fileID: 8914502004291026480}
+  - component: {fileID: 6061078026578512189}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Ground
@@ -621,9 +621,11 @@ MonoBehaviour:
   speedSlow: 5
   speedFast: 10
   speedMultiplier: 30
-  fictionPhys: {fileID: 0}
+  fictionPhys: {fileID: 6200000, guid: da0b4056f039441469d2f2feccaf2850, type: 2}
+  slidePhys: {fileID: 6200000, guid: a35c714dede938640a61afdfeb57ae8d, type: 2}
   jumpHeight: 400
   isTouchingGround: 1
+  _rbOther: {fileID: 0}
   shell: {fileID: 2808944618561553273, guid: ab3c5c83d2620724dbcc4a12401e2288, type: 3}
   currentShell: {fileID: 0}
   canThrow: 1
@@ -792,8 +794,8 @@ MonoBehaviour:
   - {x: -0.6495067, y: 0.24037743, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 90766
---- !u!70 &8914502004291026480
+  m_InstanceId: 25872
+--- !u!70 &6061078026578512189
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -806,8 +808,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.01}
-  m_Size: {x: 0.2, y: 0.15}
+  m_Offset: {x: 0, y: -0.025}
+  m_Size: {x: 0.2, y: 0.1}
   m_Direction: 1
 --- !u!1 &8927358143284367230
 GameObject:

@@ -40,6 +40,7 @@ public class Controller : MonoBehaviour
     [Range(5f, 15f)] public float speedFast = 0f;
     public float speedMultiplier = 25f;
     public PhysicsMaterial2D fictionPhys;
+    public PhysicsMaterial2D slidePhys;
 
     // Jump Settings
     [Header("Jump")]
@@ -48,9 +49,12 @@ public class Controller : MonoBehaviour
 
     [SerializeField]
     internal bool isTouchingGround; // This was private, changed to internal due to an inaccesible error in the animatorController.
-    RaycastHit2D _hit; // Used to cast a ray downwards, detects ground.
+    RaycastHit2D _hitRight; // Used to cast a ray downwards, detects ground.
+    RaycastHit2D _hitLeft;
+    Collider2D col;
 
     private Rigidbody2D _rb;
+    public Rigidbody2D _rbOther;
     
     // Shell Ability
     [Header("Shell")]
@@ -71,6 +75,19 @@ public class Controller : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        col = GetComponent<CapsuleCollider2D>();
+
+        if(_rb.name == "Turtle")
+        {
+            _rbOther = GameObject.Find("Rabbit").GetComponent<Rigidbody2D>();
+        }
+        else if (_rb.name == "Rabbit")
+        {
+            _rbOther = GameObject.Find("Turtle").GetComponent<Rigidbody2D>();
+        }
+        
+        
         
         // Initializing our animals and their abilities based on their animal type (enum).
         if (animal == Animal.Rabbit) // Default Rabbit Traits
@@ -104,23 +121,32 @@ public class Controller : MonoBehaviour
         int playerMask = 1 << 9;
 
         // We want JUST the playerLayer this time.
-        _hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, playerMask);
-        
-        
+        _hitRight = Physics2D.Raycast(transform.position + new Vector3(col.bounds.size.x / 2, -col.bounds.size.y / 2, 0),
+            Vector2.down, .55f, playerMask);
+        _hitLeft = Physics2D.Raycast(transform.position - new Vector3(col.bounds.size.x / 2, col.bounds.size.y / 2, 0),
+            Vector2.down, .55f, playerMask);
+
+
         // Moves the player
         _rb.velocity = new Vector2(input.x * (_speedSetting * Time.deltaTime * speedMultiplier), _rb.velocity.y);
 
+        
         // If we're on top of the player, and we move, turn friction "off".
         // If we stop moving while on the player, turn fricton "on".
-        if (_hit.collider != null)
+        if (_hitRight.collider != null || _hitLeft.collider != null)
         {
-            if (_rb.velocity.magnitude >= .5f)
-            {
-                _rb.sharedMaterial = null;
-            }
-            else if (_hit.collider.gameObject.CompareTag("Player") && _rb.velocity.magnitude <= .5f && !Input.GetButton("Jump"))
+            
+            Debug.Log(_hitRight.collider.name);
+            if ((_hitRight.collider.gameObject.name == "ButtonTrigger" || _hitLeft.collider.gameObject.name == "ButtonTrigger")
+                && _rb.velocity.magnitude <= .5f && !Input.GetButton("Jump"))
             {
                 _rb.sharedMaterial = fictionPhys;
+                _rbOther.sharedMaterial = fictionPhys;
+            }
+            else if (_rb.velocity.magnitude >= .5f)
+            {
+                _rb.sharedMaterial = slidePhys;
+                _rbOther.sharedMaterial = slidePhys;
             }
         }
 
@@ -130,12 +156,15 @@ public class Controller : MonoBehaviour
             int notPlayerMask = 1 << 9;
             // invert the bitmask
             notPlayerMask = ~notPlayerMask;
-            
+
             // Casting our ray downwards (.55f, which is slightly bigger than the player)
-            _hit = Physics2D.Raycast(transform.position, Vector2.down, .55f, notPlayerMask);
-            
+            _hitRight = Physics2D.Raycast(transform.position + new Vector3(col.bounds.size.x / 2, -col.bounds.size.y / 2, 0),
+                Vector2.down, .55f, notPlayerMask);
+            _hitLeft = Physics2D.Raycast(transform.position - new Vector3(col.bounds.size.x / 2, col.bounds.size.y / 2, 0),
+                Vector2.down, .55f, notPlayerMask);
+
             // As long as we are currently touching the ground, and our collider is NOT null, jump.
-            if (isTouchingGround && _hit.collider != null)
+            if (isTouchingGround && (_hitRight.collider != null || _hitLeft.collider != null))
             {
                 _rb.sharedMaterial = null;
                 _rb.AddForce(Vector2.up * (Time.deltaTime * jumpHeight), ForceMode2D.Impulse);
